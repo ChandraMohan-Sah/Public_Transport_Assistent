@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bus Fare Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #e0e0e0; 
+    }
+
+    .container {
+      width: 80%;
+      max-width: 500px;
+      background-color: #74c69d; 
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      transition: transform 0.3s ease-in-out;
+      color: #fff;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 12px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 8px; 
+      margin-bottom: 20px;
+      border: 1px solid #fff;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 16px;
+      transition: border-color 0.3s ease-in-out;
+      color: #333;
+    }
+
+    select:focus, button:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+
+    button {
+  width: 30%;
+  padding: 10px; 
+  margin-bottom: 20px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 16px;
+  background-color: #000; 
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, width 0.3s ease-in-out; /* Added width transition */
+}
+
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  background-color: #333; 
+  transform: scale(1.05);
+  width: 90%; 
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <label for="location">Select Location:</label>
+    <select id="location">
+      <option value="A">Thapathali</option>
+      <option value="B">Pulchowk</option>
+    </select>
+
+    <label for="destination">Select Destination:</label>
+    <select id="destination">
+      <option value="C">Godavari</option>
+      <option value="D">Kirtipur</option>
+    </select>
+
+    <button onclick="calculateRate()">Find Rate</button>
+
+    <div id="result"></div>
+
+  </div>
+
+  <script>
+    function calculateRate() {
+      const location = document.getElementById("location").value;
+      const destination = document.getElementById("destination").value;
+      
+     
+      const distance = getDistanceBetweenLocations(location, destination);
+      const rate = calculateFare(distance);
+
+      document.getElementById("result").innerHTML = `Rate: Rs ${rate}`;
+    }
+
+    function getDistanceBetweenLocations(location, destination) {
+      
+      const distanceData = {
+        "A-C": 10,
+        "A-D": 15,
+        "B-C": 8,
+        "B-D": 12,
+      };
+
+      return distanceData[`${location}-${destination}`] || 0;
+    }
+
+    function calculateFare(distance) {
+      const ratePer5Km = 18;
+      const numberOf5KmSegments = Math.ceil(distance / 5);
+      return numberOf5KmSegments * ratePer5Km;
+    }
+  </script>
+
+</body>
+</html>

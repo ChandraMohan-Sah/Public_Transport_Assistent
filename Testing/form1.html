@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepal Location Search</title>
+    <style>
+        #search-bar {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        
+        #suggestions-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: none;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        #suggestions-list li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #suggestions-list li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Nepal Location Search</h1>
+
+<form id="search-form" action="http://localhost:8000/api/post-to-get-nearest-station/">
+    <!-- New input field for prepopulating user's location -->
+    <input type="text" id="user-location" placeholder="Your Location" readonly>
+
+    <!-- Existing input field for destination -->
+    <input type="text" id="search-bar" placeholder="Enter Your Destination" form="search-form">
+</form>
+
+<ul id="suggestions-list"></ul>
+
+<script>
+    const searchInput = document.getElementById('search-bar');
+    const userLocationInput = document.getElementById('user-location');
+    const suggestionsList = document.getElementById('suggestions-list');
+
+    // Function to get the user's current location using Geolocation API
+    function getUserLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const userLocation = `Lat: ${position.coords.latitude}, Lon: ${position.coords.longitude}`;
+                userLocationInput.value = userLocation;
+            });
+        } else {
+            console.error('Geolocation is not supported by this browser.');
+        }
+    }
+
+    // Call the function to get the user's location
+    getUserLocation();
+
+    // Rest of your existing code...
+
+    // Event listener for input changes
+    searchInput.addEventListener('input', updateSuggestions);
+
+    // Event listener to handle suggestion selection
+    suggestionsList.addEventListener('click', (event) => {
+        if (event.target.tagName === 'LI') {
+            searchInput.value = event.target.textContent;
+            suggestionsList.style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>

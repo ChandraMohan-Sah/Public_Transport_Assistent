@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Distance Cards</title>
+  <style>
+    .body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+
+.card-container {
+    display: flex;
+    gap: 10px;
+}
+
+
+.card {
+    width: 350px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    text-align: left;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  h3 {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .footer {
+    margin-top: 6px;
+    text-align: center;
+    padding: 6px;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+  }
+
+  #busName {
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  #source, #destination, #distance, #busIcon, #stopIcon {
+    font-size: 10px;
+  }
+
+  .footer-bg {
+    background-color: #3498db;
+    color: white;
+  }
+  </style>
+</head>
+<body>
+
+<div class="card-container" id="cardContainer"></div>
+
+<script>
+  const cardsData = [
+    { route: 1, busName: "Bus ABC", source: "City A", destination: "City B", distance: "100 km", buses: 5, stops: 10 },
+];
+
+  function createCard(container, data) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    
+    card.innerHTML = `
+      <h3>Route ${data.route}</h3>
+      <div class="footer">
+        <p><strong><span id="busName">${data.busName}</span></strong>(<span id="source">${data.source}</span> - <span id="destination">${data.destination}</span>)</p>
+      </div>
+      <div class="footer footer-bg">
+        <img src="download1.png" alt="Distance Icon" class="icon"> <span id="distance">${data.distance}</span>
+        <img src="busicon.png" alt="Bus Icon" class="icon"> <span id="busIcon">${data.buses} buses</span>
+        <img src="busstop.png" alt="Stop Icon" class="icon"> <span id="stopIcon">${data.stops} stops</span>
+      </div>
+    `;
+
+    container.appendChild(card);
+  }
+
+  const cardContainer = document.getElementById('cardContainer');
+
+  cardsData.forEach(data => createCard(cardContainer, data));
+
+  function cardClick() {
+    alert('Card Clicked!');
+  }
+</script>
+
+</body>
+</html>

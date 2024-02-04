@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "route_information": [
+            "Route ID : 4:  Lagankhel-jwalakhel-Thapathali-Ratnapark-Jamal-Lainchaur-Narayan Gopal Chok-Budanilkantha --> Station ID : 1329  :  Lagankhel Bus Park --> Order : 1",
+            "Route ID : 4:  Lagankhel-jwalakhel-Thapathali-Ratnapark-Jamal-Lainchaur-Narayan Gopal Chok-Budanilkantha --> Station ID : 3676  :  Route Point --> Order : 2",
+            "Route ID : 4:  Lagankhel-jwalakhel-Thapathali-Ratnapark-Jamal-Lainchaur-Narayan Gopal Chok-Budanilkantha --> Station ID : 1039  :  Patan Hospital Bus Route Point --> Order : 3"
+            
+        ],
+        "route_id": 4,
+        "route_english_name": "Lagankhel-jwalakhel-Thapathali-Ratnapark-Jamal-Lainchaur-Narayan Gopal Chok-Budanilkantha",
+        "route_nepali_name": "लगनखेल-जावलाखेल-थापाथली-रत्नपार्क-जमल-लैनचौर-नारायणगोपाल चोक-बुढानिलकण्ठ",
+        "start": "लगनखेल",
+        "end": "बुढानिलकण्ठ"
+    },
+    {
+        "id": 2,
+        "route_information": [
+            "Route ID : 5:  Lagankhel-jwalakhel-Thapathali-Tripureshwor-Jamal-Narayan Gopal Chok-Naya buspark --> Station ID : 3335  :  New Buspark Gongabu --> Order : 1",
+            "Route ID : 5:  Lagankhel-jwalakhel-Thapathali-Tripureshwor-Jamal-Narayan Gopal Chok-Naya buspark --> Station ID : 1078  :  Naya Bus Park Route Point --> Order : 2",
+            "Route ID : 5:  Lagankhel-jwalakhel-Thapathali-Tripureshwor-Jamal-Narayan Gopal Chok-Naya buspark --> Station ID : 3377  :  Gongabu Chok --> Order : 3"
+        ],
+        "route_id": 5,
+        "route_english_name": "Lagankhel-jwalakhel-Thapathali-Tripureshwor-Jamal-Narayan Gopal Chok-Naya buspark",
+        "route_nepali_name": "लगनखेल-जावलाखेल-थापाथली-त्रिपुरेश्वर-जमल-नारायणगोपाल चोक-नया बसपार्क",
+        "start": "नया बसपार्क",
+        "end": "लगनखेल"
+    }
+]

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepal Location Search</title>
+    <style>
+        #search-bar {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #suggestions-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: none;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        #suggestions-list li {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #suggestions-list li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+
+<h1>Nepal Location Search</h1>
+
+<form id="search-form" action="http://localhost:8000/api/post-to-get-nearest-station/" >
+    <input type="text" id="search-bar" placeholder="Enter Your Destination" form="search-form">
+</form>
+
+<ul id="suggestions-list"></ul>
+
+
+<script>
+    const searchInput = document.getElementById('search-bar');
+    const suggestionsList = document.getElementById('suggestions-list');
+
+    // Function to make a request to the GraphHopper API and get location suggestions
+    async function getLocationSuggestions(query) {
+        const apiKey = '8e95a1e4-6d07-488c-8f23-d95874da0c18';
+        const endpoint = 'https://graphhopper.com/api/1/geocode';
+
+        
+        const response = await fetch(`${endpoint}?q=${query}&key=${apiKey}`);
+        const data = await response.json();
+
+        // Filter results to include only Nepal addresses
+        const nepalSuggestions = data.hits.filter(hit => hit.countrycode === 'NP');
+
+        return nepalSuggestions.map(hit => hit.name);
+    }
+
+    // Function to update the suggestions list based on user input
+    async function updateSuggestions() {
+        const query = searchInput.value.trim();
+
+        if (query.length === 0) {
+            suggestionsList.style.display = 'none';
+            return;
+        }
+
+        const suggestions = await getLocationSuggestions(query);
+
+        if (suggestions.length > 0) {
+            suggestionsList.innerHTML = suggestions.map(suggestion => `<li>${suggestion}</li>`).join('');
+            suggestionsList.style.display = 'block';
+        } else {
+            suggestionsList.style.display = 'none';
+        }
+    }
+
+    // Event listener for input changes
+    searchInput.addEventListener('input', updateSuggestions);
+
+    // Event listener to handle suggestion selection
+    suggestionsList.addEventListener('click', (event) => {
+        if (event.target.tagName === 'LI') {
+            searchInput.value = event.target.textContent;
+            suggestionsList.style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

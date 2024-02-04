@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routing with Dotted Line</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+<script>
+    const map = L.map('map').setView([27.7083895, 85.3443544], 14); // Set the initial map view to Location1
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    const location1 = [27.7083895, 85.3443544];
+    const location2 = [27.693499775963488, 85.32754428684711];
+
+    // Create routing control with custom style for dotted line
+    const control = L.Routing.control({
+        waypoints: [
+            L.latLng(location1),
+            L.latLng(location2)
+        ],
+        routeWhileDragging: true,
+        lineOptions: {
+            styles: [{color: 'blue', opacity: 0.9, dashArray: '12, 12'}] // Set the dash pattern for a dotted line
+        },
+        show: false // Disable direction information
+    }).addTo(map);
+
+    // Add markers for Location1 and Location2
+    L.marker(location1).addTo(map).bindPopup('Location 1');
+    L.marker(location2).addTo(map).bindPopup('Location 2');
+</script>
+
+</body>
+</html>
+
+

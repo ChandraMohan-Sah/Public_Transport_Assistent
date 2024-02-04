@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Geolocation with OpenStreetMap</title>
+  <style>
+    /* Set the size of the map */
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+  <!-- Include Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+<body>
+  <h1>HTML Geolocation</h1>
+  <p>Click the button to get your coordinates.</p>
+
+  <button onclick="getLocation()">Try It</button>
+
+  <p id="demo"></p>
+
+  <!-- Display the map -->
+  <div id="map"></div>
+
+  <script>
+    const x = document.getElementById("demo");
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+
+    function showPosition(position) {
+      // Corrected coordinates
+      const correctedLatitude = 27.7083895;
+      const correctedLongitude = 85.3443544;
+      
+
+      x.innerHTML = "Latitude: " + correctedLatitude +
+        "<br>Longitude: " + correctedLongitude;
+
+      // Display the map
+      showMap(correctedLatitude, correctedLongitude);
+    }
+
+    function showError(error) {
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          x.innerHTML = "User denied the request for Geolocation."
+          break;
+        case error.POSITION_UNAVAILABLE:
+          x.innerHTML = "Location information is unavailable."
+          break;
+        case error.TIMEOUT:
+          x.innerHTML = "The request to get user location timed out."
+          break;
+        case error.UNKNOWN_ERROR:
+          x.innerHTML = "An unknown error occurred."
+          break;
+      }
+    }
+
+    
+    function showMap(latitude, longitude) {
+      // Create a map centered at the corrected coordinates
+      const map = L.map('map').setView([latitude, longitude], 15);
+
+      // Add OpenStreetMap tile layer
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Â© OpenStreetMap contributors'
+      }).addTo(map);
+
+      // Add a marker at the corrected location
+      L.marker([latitude, longitude]).addTo(map)
+        .bindPopup('Your Location').openPopup();
+    }
+  </script>
+
+  <!-- Include Leaflet library -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

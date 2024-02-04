@@ -1,0 +1,37 @@
+----To get---All---Information -------------
+(route_id, station_id, station_order, device_id, device_name)
+
+SELECT
+    r.route_info_id AS route_id,
+    r.station_info_id AS station_id,
+    r.station_order,
+    d.device_id ,
+    d.device_name
+FROM
+    RoutePlot_APP_routestationinfo r
+JOIN
+    Hardware_APP_deviceid d ON r.route_info_id = d.route_id_id;
+    
+    
+    
+---------------------------------
+|Filtering Out Based on deviceId|
+---------------------------------
+
+SELECT
+    r.route_info_id AS route_id,
+    r.station_info_id AS station_id,
+    r.station_order,
+    d.device_id ,
+    d.device_name
+FROM
+    RoutePlot_APP_routestationinfo r
+JOIN
+    Hardware_APP_deviceid d ON r.route_info_id = d.route_id_id
+WHERE
+    d.device_id = 1;
+
+
+
+
+

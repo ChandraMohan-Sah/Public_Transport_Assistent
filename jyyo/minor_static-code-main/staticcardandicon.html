@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Stop Card</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f2f2f2;
+        }
+
+        .card {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .icon {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .stop-info {
+            position: absolute;
+            bottom: 50px;
+            left: 20px;
+            text-align: left;
+
+        }
+
+        .stop-info p {
+            margin: 8px 0;
+            font-size: 18px;
+        }
+
+        .speed-info {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .speed-info img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .speed-info p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <div class="icon">
+            <img src="busicon.png" alt="Left Icon">
+        </div>
+        <div class="stop-info">
+            <p>Next Stop: Name of Stop</p>
+            <p>Approx Arrival: 10:00 AM</p>
+        </div>
+        <div class="speed-info">
+            <img src="speed.png" alt="Right Icon">
+            <p>50 km/h</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

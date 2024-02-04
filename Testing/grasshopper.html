@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routing with Grashhopper</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script src="https://unpkg.com/lrm-graphhopper/dist/lrm-graphhopper.js"></script>
+    <script src="leaflet-routing-machine.js"></script>
+    <script src="lrm-graphhopper.js"></script>
+
+<script>
+    var map = L.map('map').setView([27.7083895, 85.3443544], 14);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    var waypoints = [
+        L.latLng(27.7083895, 85.3443544),
+        L.latLng(27.693499775963488, 85.32754428684711)
+    ];
+
+
+    L.Routing.control({
+        waypoints: waypoints,
+        router: L.Routing.graphHopper('8e95a1e4-6d07-488c-8f23-d95874da0c18'),
+        routeWhileDragging: true,
+        lineOptions: {
+            styles: [{color: 'blue', opacity: 0.7, dashArray: '10, 10'}]
+        }
+    }).addTo(map);
+
+    // Add markers for waypoints
+    waypoints.forEach(function(waypoint) {
+        L.marker(waypoint).addTo(map);
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
